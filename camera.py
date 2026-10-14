@@ -17,9 +17,14 @@ def play_buzzer():
 
 # 📧 EMAIL WITH IMAGE + DESCRIPTION
 def send_email_with_image(image_path, source_type, source_name):
-    sender_email = "karjuna2004@gmail.com"
-    receiver_email = "jayendrasaimangalagiri@gmail.com"
-    app_password = "zftt meyx ckif zddb"
+    # Credentials come from environment variables, never from the code
+    sender_email = os.environ.get("ALERT_EMAIL_SENDER")
+    receiver_email = os.environ.get("ALERT_EMAIL_RECEIVER")
+    app_password = os.environ.get("ALERT_EMAIL_APP_PASSWORD")
+
+    if not (sender_email and receiver_email and app_password):
+        print("⚠️ Email not sent: set ALERT_EMAIL_SENDER, ALERT_EMAIL_RECEIVER and ALERT_EMAIL_APP_PASSWORD")
+        return
 
     timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
 

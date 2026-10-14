@@ -2,3 +2,5 @@
 *__pycache__
 /cars.mp4
 /model_weights.h5
+.venv/
+.env
